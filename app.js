@@ -36,12 +36,28 @@
 		};
 	});
 
-	// 2. Let's start adding a directive to our app.
+	
 	app.directive('productTitle', function(){
-		return {  // 2.1 we're returning a 'directive configuration object'
-			restrict: 'E', // 'E' stands for Element, 'A' for Attribute
-			templateUrl: 'product-title.html', // The templateUrl defines the path to the html template we want to use.
+		return {
+			restrict: 'E',
+			templateUrl: 'product-title.html',
 		};
+	});
+
+	// 2.1 Add your custom directive for product-description here.
+	app.directive('productDescription', function(){
+		// return {
+		// 	restrict: 'E',
+		// 	templateUrl: 'product-description.html'
+		// }; 
+	});
+
+	// 4.1 Add your Specs directive here.
+	app.directive("productSpecs", function() {
+		// return {
+		// 	restrict: 'A',
+		// 	templateUrl: "product-specs.html"
+		// };
 	});
 
 	var products = [
@@ -49,6 +65,12 @@
 			name: 'Dodecahedron',
 			price: 2,
 			description: 'great Dodeca gem!',
+			// New specs
+			shine: 9,
+			rarity: 6,
+			color: '#EEE',
+			faces: 12,
+			//
 			images:[{
 				full: 'http://placekitten.com/g/300/300',
 				thumb: 'http://placekitten.com/g/300/300'
@@ -76,6 +98,12 @@
 			name: 'Pentagonal Gem',
 			price: 5.95,
 			description: 'great Pentagonal gem!',
+			// New specs
+			shine: 9,
+			rarity: 6,
+			color: '#EEE',
+			faces: 12,
+			//
 			images:[{
 				full: 'http://placekitten.com/g/300/300',
 				thumb: 'http://placekitten.com/g/300/300'
@@ -103,6 +131,12 @@
 			name: 'Diamond',
 			price: 10.95,
 			description: 'great Diamond gem!',
+			// New specs
+			shine: 9,
+			rarity: 6,
+			color: '#EEE',
+			faces: 12,
+			//
 			images:[{
 				full: 'http://placekitten.com/g/300/300',
 				thumb: 'http://placekitten.com/g/300/300'
