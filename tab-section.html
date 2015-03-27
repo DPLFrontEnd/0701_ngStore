@@ -1,0 +1,73 @@
+				<section class="tab">
+					<ul class="nav nav-pills">
+						<li ng-class="{active: tab.isSet(1)}">
+							<a href ng-click="tab.setTab(1)">Description</a></li>
+						<li ng-class="{active: tab.isSet(2)}">
+							<a href ng-click="tab.setTab(2)">Specs</a></li>
+						<li ng-class="{active: tab.isSet(3)}">
+							<a href ng-click="tab.setTab(3)">Reviews</a></li>
+					</ul>
+
+					<product-description ng-show="tab.isSet(1)"></product-description>
+					
+					<div product-specs ng-show="tab.isSet(2)"></div>
+
+					<div ng-show="tab.isSet(3)">
+						<h4>Reviews</h4>
+						<ul>
+							<li ng-repeat="review in product.reviews">
+								<blockquote>
+									<strong> {{review.stars}} Stars </strong>
+									{{review.body}}
+									<cite class="clearfix">—{{review.author}}</cite>
+									
+								</blockquote>
+
+									<!-- 2. Add your createdOn property -->
+									<!-- 2.1 use the 'date' filter to format the date -->
+									<!-- 2.2 can you add a conditional to only show if .createdOn exists for that review? -->
+							</li>													
+						</ul>
+						<!-- 1. Let's validate our form
+								First, add the 'novalidate' attribute to the form (this prevents the browser from performing its own validation functions if it has any built in.) -->
+						<form name="reviewForm" ng-controller="ReviewController as reviewCtrl" ng-submit="reviewForm.$valid && reviewCtrl.addReview(product)" novalidate>
+							<!--  Review Form -->
+							<h4>Submit a Review</h4>
+							<fieldset class="form-group">
+							
+							<!-- 1.1 Now let's add a 'required' attribute to each input. -->
+								<select ng-model="reviewCtrl.review.stars" class="form-control" ng-options="stars for stars in [5,4,3,2,1]"  title="Stars" required>
+									<option value="">Rate the Product</option>
+								</select>
+							</fieldset>
+							<fieldset class="form-group">
+								<textarea ng-model="reviewCtrl.review.body" class="form-control" placeholder="Write a short review of the product..." title="Review" required></textarea>
+							</fieldset>
+							
+							<fieldset class="form-group">
+								<input type="email" ng-model="reviewCtrl.review.author" class="form-control" placeholder="jimmyDean@example.org" title="Email" required />
+							</fieldset>
+							
+							<!-- 1.2 Before we submit, let's check to see if the form is 'valid'. This is just for display purposes, like a console.log(). 'reviewForm' is the value of the name attribute of the form (see <form> above). $valid is a built-in property Angular attaches to the form. -->
+							reviewForm is {{ reviewForm.$valid }}
+
+							<!-- 1.3 Now that you know what $valid does, go add it to our ng-submit call to prevent the form from being submitted until it is valid. -->
+							
+							<!-- 2. Now let's add some CSS to show our validated state. -->
+							<fieldset class="form-group">
+								<input type="submit" class="btn btn-primary pull-right" value="Submit Review" />
+							</fieldset>
+
+							<!--  Live Preview -->
+							<blockquote>
+								<h4>Preview your review:</h4>
+
+								<strong>{{reviewCtrl.review.stars}} Stars</strong>
+								{{reviewCtrl.review.body}}
+								<cite class="clearfix">—{{reviewCtrl.review.author}} </cite>
+							</blockquote>
+
+						</form>
+
+					</div>
+				</section>
