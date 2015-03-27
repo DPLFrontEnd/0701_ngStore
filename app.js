@@ -26,18 +26,21 @@
 		};
 	});
 
-	// 1. create a new property on our reviews to capture WHEN the review was created.
 	app.controller('ReviewController', function(){
 		this.review = {};
 
 		this.addReview = function(product){
-			// 1.1 	We'll put this property in the addReview function to make sure it happens right when 
-			// 		the user submits. We can use the Date.now() function to get the current date/time.
 			this.review.createdOn = Date.now();
 			product.reviews.push(this.review);
 			this.review = {};
+		};
+	});
 
-			// now go add this to your view.
+	// 2. Let's start adding a directive to our app.
+	app.directive('productTitle', function(){
+		return {  // 2.1 we're returning a 'directive configuration object'
+			restrict: 'E', // 'E' stands for Element, 'A' for Attribute
+			templateUrl: 'product-title.html', // The templateUrl defines the path to the html template we want to use.
 		};
 	});
 

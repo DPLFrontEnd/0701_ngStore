@@ -11,10 +11,30 @@
 
 		<ul class="list-group">
 			<li class="list-group-item" ng-repeat="product in store.products">
-				<h3>
-					{{product.name}}
-					<em class="pull-right"> {{product.price | currency }} </em>
-				</h3>
+					<!-- 1. Let's assume we want to use this same snippet in multiple pages.
+							{{product.name}}
+							<em class="pull-right"> {{product.price | currency }} </em>
+							We'll pull this code out into a new file product-title.html.
+					 -->
+
+					 <!-- 1.1 Then we can use ng-include directive to include the file directly in the page. -->
+				<!-- <h3 ng-include=" 'product-title.html' "></h3> -->
+
+				<!-- 1.2 Even though ng-include works, Angular prefers that we use a custom directive for situations like this.
+					DIRECTIVES allow you to write HTML that expresses the behavior of your application.
+
+					Types of Directives:
+						1. Template-expanding Directives - define a custom tag or attribute that is expanded or replaced; Can also include Controller logic if needed.
+						2.  Directives can also be used for:
+							- Expressing complex UI.
+							- Calling events and registering event handlers.
+							- Reusing common componenets. -->
+
+				<!-- 1.3 define a directive for <product-title></product-title> in app.js -->
+				<!-- <product-title></product-title> -->
+				<!-- 1.4 Note: Don't use self closing tags (<product-title />). It screws up older browsers. -->
+				<!-- 1.5 Note: Use Element directive for UI and Attribute directives for behaviors (like a tool tip). -->
+
 				<div ng-show="product.images.length" ng-controller="GalleryController as gallery">
 					<img ng-src="{{ product.images[gallery.current].full }}"  width="330" />
 					<ul class="list-inline thumbs">
@@ -53,20 +73,14 @@
 									<cite class="clearfix">—{{review.author}}</cite>
 									
 								</blockquote>
-
-									<!-- 2. Add your createdOn property -->
-									<!-- 2.1 use the 'date' filter to format the date -->
-									<!-- 2.2 can you add a conditional to only show if .createdOn exists for that review? -->
 							</li>													
 						</ul>
-						<!-- 1. Let's validate our form
-								First, add the 'novalidate' attribute to the form (this prevents the browser from performing its own validation functions if it has any built in.) -->
+
 						<form name="reviewForm" ng-controller="ReviewController as reviewCtrl" ng-submit="reviewForm.$valid && reviewCtrl.addReview(product)" novalidate>
 							<!--  Review Form -->
 							<h4>Submit a Review</h4>
 							<fieldset class="form-group">
 							
-							<!-- 1.1 Now let's add a 'required' attribute to each input. -->
 								<select ng-model="reviewCtrl.review.stars" class="form-control" ng-options="stars for stars in [5,4,3,2,1]"  title="Stars" required>
 									<option value="">Rate the Product</option>
 								</select>
@@ -79,12 +93,8 @@
 								<input type="email" ng-model="reviewCtrl.review.author" class="form-control" placeholder="jimmyDean@example.org" title="Email" required />
 							</fieldset>
 							
-							<!-- 1.2 Before we submit, let's check to see if the form is 'valid'. This is just for display purposes, like a console.log(). 'reviewForm' is the value of the name attribute of the form (see <form> above). $valid is a built-in property Angular attaches to the form. -->
 							reviewForm is {{ reviewForm.$valid }}
 
-							<!-- 1.3 Now that you know what $valid does, go add it to our ng-submit call to prevent the form from being submitted until it is valid. -->
-							
-							<!-- 2. Now let's add some CSS to show our validated state. -->
 							<fieldset class="form-group">
 								<input type="submit" class="btn btn-primary pull-right" value="Submit Review" />
 							</fieldset>
