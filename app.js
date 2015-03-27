@@ -7,17 +7,17 @@
 		this.products = products;
 	});
 	
-	app.controller('TabController', function(){
-		this.tab = 1;
-		this.setTab = function(setTab){
-			this.tab = setTab;
-		};
+	// app.controller('TabController', function(){
+	// 	this.tab = 1;
+	// 	this.setTab = function(setTab){
+	// 		this.tab = setTab;
+	// 	};
 
-		this.isSet = function(tab){
-			return tab===this.tab;
-		};
+	// 	this.isSet = function(tab){
+	// 		return tab===this.tab;
+	// 	};
 
-	});
+	// });
 
 	app.controller('GalleryController', function(){
 		this.current = 0;
