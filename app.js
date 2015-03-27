@@ -44,20 +44,38 @@
 		};
 	});
 
-	// 2.1 Add your custom directive for product-description here.
+	
 	app.directive('productDescription', function(){
-		// return {
-		// 	restrict: 'E',
-		// 	templateUrl: 'product-description.html'
-		// }; 
+		return {
+			restrict: 'E',
+			templateUrl: 'product-description.html'
+		}; 
 	});
 
-	// 4.1 Add your Specs directive here.
 	app.directive("productSpecs", function() {
-		// return {
-		// 	restrict: 'A',
-		// 	templateUrl: "product-specs.html"
-		// };
+		return {
+			restrict: 'A',
+			templateUrl: "product-specs.html"
+		};
+	});
+
+	app.directive('productTabs', function(){
+		return {
+			restrict: 'E',
+			templateUrl: 'product-tabs.html',
+			controller: function(){
+				this.tab = 1;
+
+				this.isSet = function(checkTab) {
+				return this.tab === checkTab;
+				};
+
+				this.setTab = function(setTab) {
+				this.tab = setTab;
+				};
+			},
+			controllerAs: 'tab'
+		};
 	});
 
 	var products = [
