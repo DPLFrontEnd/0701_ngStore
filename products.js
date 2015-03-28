@@ -1,16 +1,6 @@
-// 1.1 We'll wrap our new module in another anonymous function to give it its own scope.
 (function(){
 	
-	// 1.2 Here we'll add a new Angular module (we can use the 'app' variable again, because
-	// 		we're in a different scope. ). We'll also give this module a name of 'store-products'
-	// 		though, you can name it something else if you want.
-
 	var app = angular.module('store-products', []);
-
-
-	// 1.3	And we'll paste our product directives here.
-	// 1.4	Before we move on, we need to add this file to our HTML page and add it as
-	// 		a DEPENDENCY to our store module in app.js.
 
 	app.controller('GalleryController', function(){
 		this.current = 0;
@@ -28,7 +18,7 @@
 			this.review = {};
 		};
 	});
-	
+
 	app.directive('productTitle', function(){
 		return {
 			restrict: 'E',
@@ -78,4 +68,3 @@
 	});	
 
 })();
-
