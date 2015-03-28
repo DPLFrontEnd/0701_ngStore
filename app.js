@@ -1,89 +1,86 @@
 (function(){
 
-	var app = angular.module('store', []);
+	// 3.1	We'll add the new 'store-products' module to our app. DEPENDENCIES are INJECTED
+	// 		by including their name in the dependency array (next to the module name).
+	// 
+	var app = angular.module('store', ['store-products']);
 
+	// 3.2	Now you should be able to refresh and see everything working just like it was before.
+	// 		Only this time, you're using two seperate modules.
 
 	app.controller('StoreController', function(){
 		this.products = products;
 	});
+
+
+	// 1.0 	This file is starting to get too long to manage. We're going to break 
+	// 		it up by moving our Product directives into a new MODULE.
+	// 		Create a new file called 'products.js' and copy these directives over there.
 	
-	// app.controller('TabController', function(){
-	// 	this.tab = 1;
-	// 	this.setTab = function(setTab){
-	// 		this.tab = setTab;
+	// app.directive('productTitle', function(){
+	// 	return {
+	// 		restrict: 'E',
+	// 		templateUrl: 'product-title.html',
 	// 	};
-
-	// 	this.isSet = function(tab){
-	// 		return tab===this.tab;
+	// });
+	
+	// app.controller('GalleryController', function(){
+	// 	this.current = 0;
+	// 	this.setCurrent = function(current){
+	// 		this.current = current || 0;
 	// 	};
-
 	// });
 
-	app.controller('GalleryController', function(){
-		this.current = 0;
-		this.setCurrent = function(current){
-			this.current = current || 0;
-		};
-	});
+	// app.controller('ReviewController', function(){
+	// 	this.review = {};
 
-	app.controller('ReviewController', function(){
-		this.review = {};
-
-		this.addReview = function(product){
-			this.review.createdOn = Date.now();
-			product.reviews.push(this.review);
-			this.review = {};
-		};
-	});
-
+	// 	this.addReview = function(product){
+	// 		this.review.createdOn = Date.now();
+	// 		product.reviews.push(this.review);
+	// 		this.review = {};
+	// 	};
+	// });
 	
-	app.directive('productTitle', function(){
-		return {
-			restrict: 'E',
-			templateUrl: 'product-title.html',
-		};
-	});
+	// app.directive('productDescription', function(){
+	// 	return {
+	// 		restrict: 'E',
+	// 		templateUrl: 'product-description.html'
+	// 	}; 
+	// });
 
-	
-	app.directive('productDescription', function(){
-		return {
-			restrict: 'E',
-			templateUrl: 'product-description.html'
-		}; 
-	});
+	// app.directive("productSpecs", function() {
+	// 	return {
+	// 		restrict: 'A',
+	// 		templateUrl: "product-specs.html"
+	// 	};
+	// });
 
-	app.directive("productSpecs", function() {
-		return {
-			restrict: 'A',
-			templateUrl: "product-specs.html"
-		};
-	});
+	// app.directive("productReviews", function() {
+	// 	return {
+	// 		restrict: 'E',
+	// 		templateUrl: "product-reviews.html"
+	// 	};
+	// });
 
-	app.directive("productReviews", function() {
-		return {
-			restrict: 'E',
-			templateUrl: "product-reviews.html"
-		};
-	});
+	// app.directive('productTabs', function(){
+	// 	return {
+	// 		restrict: 'E',
+	// 		templateUrl: 'product-tabs.html',
+	// 		controller: function(){
+	// 			this.tab = 1;
 
-	app.directive('productTabs', function(){
-		return {
-			restrict: 'E',
-			templateUrl: 'product-tabs.html',
-			controller: function(){
-				this.tab = 1;
+	// 			this.isSet = function(checkTab) {
+	// 			return this.tab === checkTab;
+	// 			};
 
-				this.isSet = function(checkTab) {
-				return this.tab === checkTab;
-				};
+	// 			this.setTab = function(setTab) {
+	// 			this.tab = setTab;
+	// 			};
+	// 		},
+	// 		controllerAs: 'tab'
+	// 	};
+	// });
 
-				this.setTab = function(setTab) {
-				this.tab = setTab;
-				};
-			},
-			controllerAs: 'tab'
-		};
-	});
 
 	var products = [
 		{
